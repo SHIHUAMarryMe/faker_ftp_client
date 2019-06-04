@@ -26,13 +26,13 @@ void ItemDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, 
         QVariant variant{ index.data(Qt::UserRole+1) };
         ItemData data{ variant.value<ItemData>() };
 
-        QStyleOptionViewItem viewOption(option);
+        QStyleOptionViewItem view_option(option);
 
         QRectF rect{};
-        rect.setX(viewOption.rect.x());
-        rect.setY(viewOption.rect.y());
-        rect.setWidth(viewOption.rect.width()-1);
-        rect.setHeight(viewOption.rect.height()-1);
+        rect.setX(view_option.rect.x());
+        rect.setY(view_option.rect.y());
+        rect.setWidth(view_option.rect.width()-1);
+        rect.setHeight(view_option.rect.height()-1);
 
         QRectF icon_rect{ rect.x() + 29.5, rect.y() + 29.5, 32.0, 32.0 };
         painter->drawImage(icon_rect, QImage{data.icon_path_str_});
