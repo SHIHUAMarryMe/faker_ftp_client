@@ -5,6 +5,7 @@
 #include <QNetworkReply>
 
 class QListView;
+class ItemDelegate;
 class QStandardItemModel;
 class QSortFilterProxyModel;
 class SelectFileAndShowProgressWidget;
@@ -17,6 +18,8 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = 0);
     ~MainWindow();
+
+    void putFileListInModel(const QList<QString>& files_name)noexcept;
 
 
 public slots:
@@ -34,6 +37,8 @@ private:
     QListView* list_view_;
     QStandardItemModel* standard_item_model_;
     QSortFilterProxyModel* sort_filter_proxy_model_;
+    ItemDelegate* item_delegate_;
+
 
     SelectFileAndShowProgressWidget* progress_widget_;
 };

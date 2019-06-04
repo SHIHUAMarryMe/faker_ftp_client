@@ -30,10 +30,18 @@ SOURCES += \
         mainwindow.cpp \
     selectfileandshowprogress.cpp \
     httpworker.cpp \
-    httpworkercontroller.cpp
+    httpworkercontroller.cpp \
+    itemdelegate.cpp
 
 HEADERS += \
         mainwindow.h \
     selectfileandshowprogress.h \
     httpworker.h \
-    httpworkercontroller.h
+    httpworkercontroller.h \
+    itemdef.h \
+    itemdelegate.h
+
+DISTFILES +=
+
+RESOURCES += \
+    img_resource.qrc
