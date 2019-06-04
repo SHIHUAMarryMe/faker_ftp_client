@@ -34,15 +34,9 @@ void ItemDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, 
         rect.setWidth(viewOption.rect.width()-1);
         rect.setHeight(viewOption.rect.height()-1);
 
-        QRectF icon_rect{ rect.top() + 29.0, rect.left() + 29.5, 32.0, 32.0 };
-
-        qDebug() << option.rect;
-
+        QRectF icon_rect{ rect.x() + 29.5, rect.y() + 29.5, 32.0, 32.0 };
         painter->drawImage(icon_rect, QImage{data.icon_path_str_});
 
-
-//        QRect text_rect{ rect.top()-100, rect.left()-5, 60, 32};
-//        painter->drawText(text_rect, data.name_);
 
         painter->restore();
     }

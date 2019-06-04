@@ -29,13 +29,14 @@ MainWindow::MainWindow(QWidget *parent)
     sort_filter_proxy_model_->setSourceModel(this->standard_item_model_);
 //    sort_filter_proxy_model_->setDynamicSortFilter(true);
 
-    list_view_->setSpacing(5);
+
+    list_view_->setSpacing(20);
     list_view_->setItemDelegate(item_delegate_);
     list_view_->setModel(sort_filter_proxy_model_);
     list_view_->setViewMode(QListView::IconMode);
     list_view_->setDragEnabled(false);
-
     list_view_->setMinimumWidth(600);
+    list_view_->setEditTriggers(QListView::EditTrigger::NoEditTriggers);
 
 
     QVBoxLayout* v_box_layout{ new QVBoxLayout };
