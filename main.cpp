@@ -8,16 +8,7 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    QDir dir{"."};
-    QList<QString> files_name{ dir.entryList() };
-
-//    for(const auto& file_name : files_name)
-//    {
-//        qDebug() << file_name;
-//    }
-
-    MainWindow w;
-    w.putFileListInModel(files_name);
+    MainWindow w{QUrl{"http://127.0.0.1:8888"}};
     w.show();
 
     return a.exec();

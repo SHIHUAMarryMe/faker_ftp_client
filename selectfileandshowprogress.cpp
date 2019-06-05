@@ -13,7 +13,7 @@
 
 
 SelectFileAndShowProgressWidget::SelectFileAndShowProgressWidget(QWidget * const parent)
-    :QWidget{ parent },
+    :QFrame{ parent },
       file_dialog_{new QFileDialog},
       line_editor_{new QLineEdit},
     progress_bar_{new QProgressBar},
@@ -56,9 +56,18 @@ SelectFileAndShowProgressWidget::SelectFileAndShowProgressWidget(QWidget * const
 
 
 
-
     QObject::connect(this->select_button_, &QPushButton::clicked, this, &SelectFileAndShowProgressWidget::onSelectedButtonClicked);
 
+}
+
+void SelectFileAndShowProgressWidget::setPercent(std::size_t value)noexcept
+{
+    progress_bar_->setValue(value);
+}
+
+
+SelectFileAndShowProgressWidget::~SelectFileAndShowProgressWidget()
+{
 }
 
 void SelectFileAndShowProgressWidget::onSelectedButtonClicked(bool checked)
@@ -72,10 +81,8 @@ void SelectFileAndShowProgressWidget::onSelectedButtonClicked(bool checked)
         QString file_path_str{ this->file_dialog_->selectedFiles()[0] };
         this->line_editor_->setText(file_path_str);
 
+        emit beSelecedPath(file_path_str);
     }else{
-        QMessageBox msgBox;
-        msgBox.setText(tr("You'd better select a file."));
-        msgBox.exec();
 
         this->line_editor_->clear();
     }

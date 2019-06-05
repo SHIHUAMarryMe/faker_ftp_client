@@ -37,6 +37,8 @@ void ItemDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, 
         QRectF icon_rect{ rect.x() + 29.5, rect.y() + 29.5, 32.0, 32.0 };
         painter->drawImage(icon_rect, QImage{data.icon_path_str_});
 
+        QRectF text_rect{ rect.x(), icon_rect.y()+60.0, rect.width(), 20.0 };
+        painter->drawText(text_rect, data.name_);
 
         painter->restore();
     }
@@ -47,5 +49,5 @@ QSize ItemDelegate::sizeHint(const QStyleOptionViewItem &option, const QModelInd
     (void)option;
     (void)index;
 
-    return QSize{90, 90};
+    return QSize{160, 90};
 }

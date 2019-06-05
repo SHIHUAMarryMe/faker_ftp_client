@@ -1,21 +1,31 @@
 #ifndef SELECTFILEANDSHOWPROGRESS_H
 #define SELECTFILEANDSHOWPROGRESS_H
 
-#include <QWidget>
+#include <QObject>
+#include <QFrame>
 
 class QFileDialog;
 class QLineEdit;
 class QProgressBar;
 class QPushButton;
-class SelectFileAndShowProgressWidget final : public QWidget
+
+class SelectFileAndShowProgressWidget final : public QFrame
 {
+    Q_OBJECT
+
 public :
-    SelectFileAndShowProgressWidget(QWidget* const parent = nullptr);
+    explicit SelectFileAndShowProgressWidget(QWidget* const parent = nullptr);
 
     // forbit copy and move.
     SelectFileAndShowProgressWidget(const SelectFileAndShowProgressWidget&) = delete;
     SelectFileAndShowProgressWidget& operator=(const SelectFileAndShowProgressWidget&) = delete;
 
+    void setPercent(std::size_t value)noexcept;
+
+    virtual ~SelectFileAndShowProgressWidget();
+
+signals:
+    void beSelecedPath(const QString& file_path);
 
 private slots:
     void onSelectedButtonClicked(bool checked);

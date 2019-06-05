@@ -14,12 +14,13 @@ class SelectFileAndShowProgressWidget;
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
-
 public:
-    MainWindow(QWidget *parent = 0);
-    ~MainWindow();
+    explicit MainWindow(const QUrl &url, QWidget *parent = nullptr);
+    virtual ~MainWindow();
+
 
     void putFileListInModel(const QList<QString>& files_name)noexcept;
+    void uploadFile(const QString& file_path_str);
 
 
 public slots:
@@ -37,10 +38,9 @@ private:
     QListView* list_view_;
     QStandardItemModel* standard_item_model_;
     QSortFilterProxyModel* sort_filter_proxy_model_;
-    ItemDelegate* item_delegate_;
-
-
     SelectFileAndShowProgressWidget* progress_widget_;
+    ItemDelegate* item_delegate_;
+    QUrl url_;
 };
 
 #endif // MAINWINDOW_H

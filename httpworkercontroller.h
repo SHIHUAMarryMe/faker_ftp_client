@@ -6,6 +6,8 @@
 #include <QThread>
 #include <QNetworkReply>
 
+#include <atomic>
+
 
 class HttpWroker;
 
@@ -20,6 +22,11 @@ public:
 
     virtual ~HttpWorkerController();
 
+    inline bool whetherOccuredErr()noexcept
+    {
+        return error_flag_.load(std::memory_order_release);
+    }
+
 signals:
     void finished();
     void fileListJson(const QByteArray& json_str);
@@ -29,9 +36,15 @@ signals:
     void post(const QUrl& url, const QString& file_path_str);
     void get(const QUrl& url);
 
+
+private slots:
+    void setErrorFlag(QNetworkReply::NetworkError err);
+
 private:
     QThread* worker_thread_;
     HttpWroker* http_worker_;
+
+    std::atomic<bool> error_flag_{false};
 };
 
 

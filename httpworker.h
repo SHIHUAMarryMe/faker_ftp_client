@@ -15,7 +15,7 @@ class HttpWroker final : public QObject
 {
     Q_OBJECT
 public:
-    HttpWroker(QObject* const parent = nullptr);
+    explicit HttpWroker(QObject* const parent = nullptr);
     HttpWroker(const HttpWroker&) = delete;
     HttpWroker& operator=(const HttpWroker) = delete;
 
@@ -23,7 +23,7 @@ public:
     virtual ~HttpWroker();
 
 public slots:
-    void post(const QUrl& url, const QString& file_path_str);
+    void upload(const QUrl& url, const QString& file_path_str);
     void get(const QUrl& url);
 
 
@@ -33,9 +33,6 @@ signals:
     void errorOccured(QNetworkReply::NetworkError err);
     void fileListJson(const QByteArray& json);
 
-
-private slots:
-    void readContent();
 
 private:
     QNetworkAccessManager* network_access_manager_;
